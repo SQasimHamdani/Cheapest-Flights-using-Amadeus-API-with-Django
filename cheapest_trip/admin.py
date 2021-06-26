@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(FlightsData)
 admin.site.register(DepartureCity)
 admin.site.register(ArrivalCity)
+admin.site.register(Setting)

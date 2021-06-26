@@ -10,10 +10,14 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>All Cheapest Flights Table</h6>
+                    <h6>New Arrival Cities Table</h6>
+
+
                 </div>
                 <div class="card-header pb-0">
-                    <h6>{{ total_flights | length}} Total Flights Data</h6>
+                    <h6>Total : {{ flights | length}} Flights Added</h6>
+
+
                 </div>
 
                 <div class="card-body px-0 pt-0 pb-2">
@@ -22,34 +26,26 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Departure</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Arival</th>
-                                    <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Price</th>
-                                    <!-- <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Duration</th>
-                                    <th class="text-secondary opacity-7"></th> -->
+                                        Airport Code
+                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for flight in flights %}
+
+
                                 <tr>
                                     <td>
                                         <div class="d-flex px-3 py-2">
 
                                             <div class="d-flex flex-column justify-content-center text-uppercase">
-                                                <h6 class="mb-0 text-sm">{{flight.departure_city}}</h6>
-                                                <p class="text-xs text-secondary mb-0">
-                                                    {{flight.departure_date}}-{{flight.departure_time}}
-                                                </p>
+                                                <h6 class="mb-0 text-sm">{{flight}}</h6>
+
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <div class="d-flex px-3 py-2">
 
                                             <div class="d-flex flex-column justify-content-center text-uppercase">
@@ -74,7 +70,7 @@
                                                 /
                                                 {{flight.currency}}</span>
                                             {% endif %}
-                                    </td>
+                                    </td> -->
                                     <!-- <td class="align-middle text-center">
                                         <span class="text-secondary text-xs font-weight-bold">{{flight.duration}}</span>
                                     </td> -->
@@ -88,31 +84,11 @@
                                 {% endfor %}
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
-            {% if flights.has_other_pages %}
-            <nav aria-label="Page navigation conatiner">
-                <ul class="pagination justify-content-center">
-                    {% if flights.has_previous %}
-                    <li><a href="?page={{ flights.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-                    {% endif %}
-                    <li>
-                        <span class="current page-link">
-                            Page {{ flights.number }} of {{ flights.paginator.num_pages }}
-                        </span>
-                    </li>
-                    {% if flights.has_next %}
-                    <li><a href="?page={{ flights.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
-                    {% endif %}
-                </ul>
-            </nav>
         </div>
-        {% endif %}
     </div>
-</div>
 </div>
 {% endblock%}
 {% block js %}

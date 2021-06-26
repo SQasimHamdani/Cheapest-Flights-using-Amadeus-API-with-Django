@@ -5,7 +5,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="">
     <title>
         Cheapest Flight
@@ -96,6 +95,7 @@
                                 </g>
                             </svg>
                         </div>
+
                         <span class="nav-link-text ms-1">Search</span>
                     </a>
                 </li>
@@ -129,6 +129,18 @@
                 </li>
             </ul>
         </div>
+        <div class=" ">
+            <button class="btn btn-primary ">
+                <a href="{% url 'departure_cities_loader' %}" style="color: aliceblue;">
+                    Destination Cities Loader
+                </a>
+            </button>
+            <button class="btn btn-primary ">
+                <a href="{% url 'arrival_cities_loader' %}" style="color: aliceblue;">
+                    Arrival Cities Loader
+                </a>
+            </button>
+        </div>
     </aside>
 
     <main class="main-content mt-1 border-radius-lg">
@@ -141,14 +153,29 @@
                     <!-- <h6 class="font-weight-bolder mb-0">Tables</h6> -->
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <div class="ms-md-auto pe-md-3 mt-2 d-flex align-items-center">
                         <!-- <div class="input-group">
                             <span class="input-group-text text-body"><i class="fas fa-search"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Type here...">
                         </div> -->
+                        {% if settings.Status == "Paused" %}
+                        <div class="form-check form-switch align-items-center">
+                            <input class="form-check-input" type="checkbox" id="status_switch" checked />
+                            <label class="form-check-label" value="Paused" for="status_switch">Pause Mode</label>
+                        </div>
+
+                        {% else %}
+                        <div class="form-check form-switch align-items-center">
+                            <input class="form-check-input" type="checkbox" id="status_switch" />
+                            <label class="form-check-label" value="Played" for="status_switch">Pause Mode</label>
+                        </div>
+
+                        {% endif %}
+
 
                     </div>
+
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
                             <a href="{% url 'search' %}" class="nav-link text-body font-weight-bold px-0">
@@ -164,7 +191,21 @@
 
         {% block content %}
         {% endblock%}
+        <!-- <h2>Hello This is Footer</h2> -->
+        <!-- <div class="m-3 row navbar-nav align-items-center">
 
+            <button class="btn btn-primary ">
+                <a href="{% url 'departure_cities_loader' %}" style="color: aliceblue;">
+                    Destination Cities Loader
+                </a>
+            </button>
+            <button class="btn btn-primary ">
+                <a href="{% url 'arrival_cities_loader' %}" style="color: aliceblue;">
+                    Arrival Cities Loader
+                </a>
+            </button>
+
+        </div> -->
 
     </main>
 
@@ -181,11 +222,52 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
+    <!-- <script>
+        $("#status_switch").change(function () {
+            console.log($(this).val());
+        });
+    </script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+
+            $('#status_switch').change(function () {
+                document.getElementById("status_switch").disabled = true
+
+                $.post("ajax/change_status", {
+
+
+                    Status: '{{settings.first.Status}}',
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+
+                    success: function (data) {
+                        console.log("Success post", data)
+                        location.reload(true);
+                    },
+                });
+
+                $.get("ajax/change_status", {
+                    dataType: 'json',
+                    success: function (json) {
+                        console.log("Success get", json)
+                    }
+                });
+
+                // document.getElementById("status_switch").checked = true
+                document.getElementById("status_switch").disabled = false
+            });
+        });
+
+
+    </script>
+
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 
-    <script src="{% static 'assets/js/soft-ui-dashboard.min.js' %}"></script>
+    <script src="{% static 'assets/js/soft-ui-dashboard.js' %}"></script>
     {% block js %}
     {% endblock%}
 </body>

@@ -38,3 +38,13 @@ class ArrivalCity(models.Model):
     arrival_city = models.CharField(max_length=200, null=True, blank=True)
     def __str__(self):
         return self.arrival_city
+
+class Setting(models.Model):
+    status_choices = [
+        ('Played', 'Played'),
+        ('Paused', 'Paused'),
+    ]
+    Status = models.CharField(max_length=200, null=True, blank=True, choices=status_choices)
+
+    def __str__(self):
+        return "Status = "+self.Status

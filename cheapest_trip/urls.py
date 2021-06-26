@@ -7,4 +7,7 @@ urlpatterns = [
     path('arrival_cities_loader', views.arrival_cities_loader, name='arrival_cities_loader'), 
     path('departure_cities_loader', views.departure_cities_loader, name='departure_cities_loader'), 
     path('update_flights_record', views.update_flights_record, name='update_flights_record'), 
+    path('ajax/change_status', views.change_status, name='change_status'),
+    path('ajax/change_status', views.change_status, name='change_status'),
+    
 ] 

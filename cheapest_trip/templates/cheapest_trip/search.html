@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <form role="form text-left" action="{% url 'search' %}" method="POST">
                                 {% csrf_token %}
-                                <label>Departure Code</label>
+                                <label>Departure Ariport Code*</label>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" name="Departure" placeholder="Departure"
                                         aria-label="Departure" aria-describedby="email-addon" required>
@@ -25,7 +25,12 @@
                                 <label>Arrival Code</label>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" name="Arrival" placeholder="Arrival"
-                                        aria-label="Arrival" aria-describedby="email-addon" required>
+                                        aria-label="Arrival" aria-describedby="email-addon">
+                                </div>
+                                <label>Departure Date*</label>
+                                <div class="mb-3">
+                                    <input type="date" class="form-control" name="DepartureDate"
+                                        aria-label="DepartureDate" aria-describedby="email-addon" required>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Search

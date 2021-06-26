@@ -4,5 +4,5 @@ from AmaduesAPI import AmadeusApi
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(AmadeusApi.update_flights, 'interval', days=10)
+    scheduler.add_job(AmadeusApi.update_flights, 'interval', minutes=2)
     scheduler.start()
