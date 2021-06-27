@@ -1,3 +1,6 @@
 apscheduler
 amadeus
 django==3.0.6
+pandas
+numpy
+flatten_json
