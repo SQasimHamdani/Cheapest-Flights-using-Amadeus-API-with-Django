@@ -2,12 +2,9 @@
 
 Cheapest Flights using Amadeus API with Django
 
-## v2
+### v2
 
-#### updated requirements.txt
-
-#### fix arrival path
-
-#### fix destination loader path
-
-#### add admin panel button on sidebar
+##### 1. updated requirements.txt
+##### 2. fixed arrival path
+##### 3. fixed destination loader path
+##### 4. added admin panel button on sidebar
